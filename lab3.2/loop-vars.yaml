@@ -1,0 +1,22 @@
+---
+- name: Install multiple packages
+  hosts: servers
+  gather_facts: true
+  become: True
+  become_user: root
+
+  vars:
+    packages_to_install:
+      - net-tools
+      - docker.io
+
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
+    - name: Install packages
+      package:
+        name: "{{ packages_to_install }}"
+        state: present
