@@ -1,0 +1,22 @@
+---
+- name: Show Specific Ansible Facts
+  hosts: servers
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Show Distribution
+      debug:
+        var: ansible_facts['distribution']
+
+    - name: Show Version
+      debug:
+        var: ansible_facts['distribution_version']
+
+    - name: Show Architecture
+      debug:
+        var: ansible_facts['architecture']
+
+    - name: Show Kernel
+      debug:
+        var: ansible_facts['kernel']

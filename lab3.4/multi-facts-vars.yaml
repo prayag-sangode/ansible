@@ -1,0 +1,15 @@
+---
+- name: Show Specific Ansible Facts
+  hosts: servers
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Display OS Details
+      debug:
+        msg:
+          Distribution: "{{ ansible_facts['distribution'] }}"
+          Version: "{{ ansible_facts['distribution_version'] }}"
+          Architecture: "{{ ansible_facts['architecture'] }}"
+          Kernel: "{{ ansible_facts['kernel'] }}"
+          OS Family: "{{ ansible_facts['os_family'] }}"

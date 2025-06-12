@@ -1,0 +1,40 @@
+---
+- name: Handler Example
+  hosts: servers
+  gather_facts: true
+  become: True
+  become_user: root
+
+  tasks:
+    - name: Update package cache (Debian)
+      ansible.builtin.apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install Apache
+      ansible.builtin.package:
+        name: apache2
+        state: present
+
+    - name: Copy custom Apache configuration
+      ansible.builtin.copy:
+        src: template/000-default.conf
+        dest: /etc/apache2/sites-available/000-default.conf
+      notify:
+        - Restart Apache
+
+    - name: Create directory /var/www/html/web14
+      ansible.builtin.file:
+        path: /var/www/html/web14
+        state: directory
+
+    - name: Copy index.html to /var/www/html/web14
+      ansible.builtin.copy:
+        src: template/index.html
+        dest: /var/www/html/web14/index.html
+
+  handlers:
+    - name: Restart Apache
+      ansible.builtin.service:
+        name: apache2
+        state: restarted

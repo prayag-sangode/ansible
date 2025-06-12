@@ -5,7 +5,7 @@
   become: True
   become_user: root
   vars:
-    package_name: "nmap"  # Define the package name as a variable
+    package_name: "telnet"  # Define the package name as a variable
 
   tasks:
 
