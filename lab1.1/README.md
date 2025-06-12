@@ -1,13 +1,11 @@
-Here is your Ansible lab formatted as a `README.md`:
 
-````markdown
-# 🧪 Lab 1.1: Install Ansible, Create Inventory File, and Run Ad-Hoc Commands
+# Lab 1.1: Install Ansible, Create Inventory File, and Run Ad-Hoc Commands
 
 This lab will guide you through installing Ansible, setting up an inventory file, and running basic ad-hoc commands between two Ubuntu 20.04 virtual machines.
 
 ---
 
-## 🧾 Requirements
+##  Requirements
 
 - Two Ubuntu 20.04 VMs  
   - **VM 1**: `192.168.1.13` - Control Node (`control-node.example.com`)
@@ -15,7 +13,7 @@ This lab will guide you through installing Ansible, setting up an inventory file
 
 ---
 
-## 🧰 Steps
+##  Steps
 
 ### 1. Set Hostnames
 
@@ -121,31 +119,31 @@ EOF
 
 ### 7. Run Ansible Ad-Hoc Commands
 
-#### ✅ Ping Check:
+####  Ping Check:
 
 ```bash
 ansible all -m ping -i hosts.ini
 ```
 
-#### 📁 List Files in `/tmp`:
+####  List Files in `/tmp`:
 
 ```bash
 ansible servers -m command -a "ls /tmp" -i hosts.ini
 ```
 
-#### 🔄 Update APT Cache:
+####  Update APT Cache:
 
 ```bash
 ansible servers -i hosts.ini -m apt -a "update_cache=yes" --become
 ```
 
-#### 🌐 Install Apache2:
+####  Install Apache2:
 
 ```bash
 ansible servers -m apt -a "name=apache2 state=present" -i hosts.ini --become
 ```
 
-#### 🧪 Verify on Managed Node:
+####  Verify on Managed Node:
 
 ```bash
 dpkg -l | grep apache2
@@ -153,18 +151,4 @@ dpkg -l | grep apache2
 
 ---
 
-## ✅ Lab Completed
 
-You’ve successfully:
-
-* Installed Ansible
-* Set up an inventory file
-* Verified host connectivity
-* Executed ad-hoc Ansible commands
-
----
-
-```
-
-Let me know if you'd like this broken into multiple files or converted into a GitHub-ready project structure!
-```
