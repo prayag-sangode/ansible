@@ -1,0 +1,11 @@
+---
+- name: Show Specific Ansible Fact
+  hosts: servers
+  gather_facts: true
+  become: True
+  become_user: root
+
+  tasks:
+    - name: Print all facts
+      debug:
+        var: ansible_facts
