@@ -1,0 +1,20 @@
+---
+- name: Install Package with Variable
+  hosts: servers
+  gather_facts: true
+  become: True
+  become_user: root
+  vars:
+    package_name: "nmap"  # Define the package name as a variable
+
+  tasks:
+
+    - name: Update package cache (Debian)
+      ansible.builtin.apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install {{ package_name }}
+      ansible.builtin.apt:
+        name: "{{ package_name }}"
+        state: present
