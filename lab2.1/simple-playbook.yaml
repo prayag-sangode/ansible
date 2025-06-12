@@ -1,0 +1,17 @@
+---
+- name: Install mysql-client
+  hosts: servers
+  gather_facts: true
+  become: True
+  become_user: root
+  tasks:
+
+    - name: Update package cache
+      ansible.builtin.apt:
+        update_cache: yes  # Update the package cache
+      when: ansible_os_family == "Debian"
+
+    - name: Install mysql-client
+      ansible.builtin.apt:
+        name: mysql-client
+        state: present
