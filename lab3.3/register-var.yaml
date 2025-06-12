@@ -1,0 +1,14 @@
+- name: Get disk space
+  hosts: servers
+  gather_facts: true
+  become: True
+  become_user: root
+
+  tasks:
+    - name: Get Disk Space
+      command: df -h /
+      register: disk_space_result
+
+    - name: Display Disk Space
+      debug:
+        var: disk_space_result.stdout_lines
