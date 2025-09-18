@@ -1,0 +1,21 @@
+---
+- name: Install mysql-client
+  hosts: servers
+  gather_facts: true
+  become: true
+  become_user: root
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Install MySQL client package
+      package:
+        name: mysql-client
+        state: present
+
+    - name: Show DB user
+      debug:
+        msg: "The DB user is {{ db_user }}"
+
+    - name: Show DB password
+      debug:
+        msg: "The DB password is {{ db_password }}"
